@@ -19,7 +19,7 @@ public class MainProgram {
 		
 		while(true) {
 			
-			
+			if(counter<h.processes.size()) {
 			    readyQueue2.add(h.processes.get(counter));
 				readyQueue2.get(counter).clock++;
 				 process min = readyQueue2.get(0);
@@ -43,6 +43,8 @@ public class MainProgram {
 					 } 
 				 if(counter<readyQueue2.size()-1)
 				    counter++;
+				 if(readyQueue2.isEmpty())
+					 break;
 				
 						try {
 						 FileWriter fw=new FileWriter(new File("Allprocesses.txt"));
@@ -53,7 +55,7 @@ public class MainProgram {
 						
 					 }
 
-					 
+		}
 	
 		    }
 		    
