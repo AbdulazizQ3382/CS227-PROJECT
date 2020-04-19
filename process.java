@@ -11,10 +11,11 @@ public class process {
 	public int memoryUsed;
 	public int cpuBurst;
 	public int numWaitMem;  // number of times waiting for a size
-	public int ioBurst;
-	public boolean requestIo; 
+	public int ioBurst; // performing an io
+	public int requestIo; 
 	public int numReqIo;
 	public int totalTimeIoBurst;
+	public int numTimeCpu;
 	public process(int id) throws FileNotFoundException{
 		clock=0;
 		state = new State();
@@ -27,21 +28,27 @@ public class process {
 		cpuBurst=info[0];
 		ioBurst=info[2];
 		numWaitMem=0;
-		requestIo=randomeReq();
+		requestIo=setIOReq();
 	}
-	public boolean randomeReq() {
-//	boolean arrBool[]= {true,false};
-//		double req=Math.random()*1+0;
-//		int reqInt=(int)req;
-//		return arrBool[reqInt];
+	
+
+public int setIOReq() {
 	double m = Math.random();
-	boolean b = true;
-		if (m > 0 && m <= 0.5) {
-			b = true;
-		return b;
-	} else {
-		return false;
-		}
+	int n = 0;
+	if (m >= 0 && m < 0.2) {
+		n = 0;
+	} else if (m >= 0.2 && m < 0.4) {
+		n = 1;
+	} else if (m >= 0.4 && m < 0.6) {
+		n = 2;
+	} else if (m >= 0.6 && m < 0.8) {
+		n = 3;
+	} else if (m >= 0.8 && m < 0.9) {
+		n = 4;
+	} else if (m >= 0.9 && m <= 1) {
+		n = 5;
 	}
+	return n;
+}
 
 }
